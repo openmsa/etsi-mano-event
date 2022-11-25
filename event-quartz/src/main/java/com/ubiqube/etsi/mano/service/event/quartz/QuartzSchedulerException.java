@@ -14,29 +14,15 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.ubiqube.etsi.mano.service.event;
+package com.ubiqube.etsi.mano.service.event.quartz;
 
-import com.ubiqube.etsi.mano.service.event.model.EventMessage;
-import com.ubiqube.etsi.mano.service.event.model.Subscription;
+public class QuartzSchedulerException extends RuntimeException {
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+	/** Serial. */
+	private static final long serialVersionUID = 1L;
 
-/**
- *
- * @author olivier
- *
- */
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Getter
-@Setter
-public class SubscriptionEvent {
-	private Subscription subscription;
+	public QuartzSchedulerException(final Throwable e) {
+		super(e);
+	}
 
-	private EventMessage event;
 }

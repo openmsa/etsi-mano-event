@@ -14,29 +14,36 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.ubiqube.etsi.mano.service.event;
-
-import com.ubiqube.etsi.mano.service.event.model.EventMessage;
-import com.ubiqube.etsi.mano.service.event.model.Subscription;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+package com.ubiqube.etsi.mano.service.event.model;
 
 /**
  *
- * @author olivier
+ * @author Olivier Vignaud <ovi@ubiqube.com>
  *
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Getter
-@Setter
-public class SubscriptionEvent {
-	private Subscription subscription;
+public enum SubscriptionType {
+	VNF("VNF"),
+	NSD("NSD"),
+	ALARM("ALARM"),
+	NSLCM("NSLCM"),
+	VNFFM("VNFFM"),
+	VNFLCM("VNFLCM"),
+	VNFPM("VNFPM"),
+	VNFIND("VNFIND"),
+	VRQAN("VRQAN"),
+	MEOPKG("MEOPKG"),
+	NSDVNF("NSDVNF"),
+	NSPM("NSPM"),
+	;
 
-	private EventMessage event;
+	private String value;
+
+	SubscriptionType(final String string) {
+		value = string;
+	}
+
+	@Override
+	public String toString() {
+		return value;
+	}
 }

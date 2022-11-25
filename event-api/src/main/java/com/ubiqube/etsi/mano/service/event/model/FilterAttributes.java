@@ -14,29 +14,44 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.ubiqube.etsi.mano.service.event;
+package com.ubiqube.etsi.mano.service.event.model;
 
-import com.ubiqube.etsi.mano.service.event.model.EventMessage;
-import com.ubiqube.etsi.mano.service.event.model.Subscription;
+import java.util.UUID;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
  *
- * @author olivier
+ * @author ncuser
  *
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Getter
 @Setter
-public class SubscriptionEvent {
-	private Subscription subscription;
+@Entity
+@NoArgsConstructor
+public class FilterAttributes {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private UUID id;
 
-	private EventMessage event;
+	private String attribute;
+
+	private String value;
+
+	public FilterAttributes(final String attr, final String value) {
+		this.attribute = attr;
+		this.value = value;
+	}
+
+	public static FilterAttributes of(final String attr, final String value) {
+		return new FilterAttributes(attr, value);
+	}
+
 }

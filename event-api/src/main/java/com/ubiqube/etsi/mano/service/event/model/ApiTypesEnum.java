@@ -14,29 +14,33 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.ubiqube.etsi.mano.service.event;
+package com.ubiqube.etsi.mano.service.event.model;
 
-import com.ubiqube.etsi.mano.service.event.model.EventMessage;
-import com.ubiqube.etsi.mano.service.event.model.Subscription;
+public enum ApiTypesEnum {
+	SOL003("SOL003"),
+	SOL005("SOL005");
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+	private final String value;
 
-/**
- *
- * @author olivier
- *
- */
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Getter
-@Setter
-public class SubscriptionEvent {
-	private Subscription subscription;
+	ApiTypesEnum(final String v) {
+		value = v;
+	}
 
-	private EventMessage event;
+	public String value() {
+		return value;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(value);
+	}
+
+	public static ApiTypesEnum fromValue(final String v) {
+		for (final ApiTypesEnum b : ApiTypesEnum.values()) {
+			if (String.valueOf(b.value).equals(v)) {
+				return b;
+			}
+		}
+		return null;
+	}
 }

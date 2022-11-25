@@ -14,10 +14,11 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.ubiqube.etsi.mano.service.event;
+package com.ubiqube.etsi.mano.service.event.model;
 
-import com.ubiqube.etsi.mano.service.event.model.EventMessage;
-import com.ubiqube.etsi.mano.service.event.model.Subscription;
+import java.io.Serializable;
+
+import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,18 +26,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- *
- * @author olivier
- *
- */
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Getter
 @Setter
-public class SubscriptionEvent {
-	private Subscription subscription;
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Embeddable
+public class AuthParamBasic implements Serializable {
+	/** Serial. */
+	private static final long serialVersionUID = 1L;
+	private String userName;
+	private String password;
 
-	private EventMessage event;
 }

@@ -14,10 +14,18 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.ubiqube.etsi.mano.service.event;
+package com.ubiqube.etsi.mano.service.event.model;
 
-import com.ubiqube.etsi.mano.service.event.model.EventMessage;
-import com.ubiqube.etsi.mano.service.event.model.Subscription;
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,16 +35,28 @@ import lombok.Setter;
 
 /**
  *
- * @author olivier
+ * @author Olivier Vignaud <ovi@ubiqube.com>
  *
  */
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Getter
 @Setter
-public class SubscriptionEvent {
-	private Subscription subscription;
+@Embeddable
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class AuthentificationInformations implements Serializable {
+	/** Serial. */
+	private static final long serialVersionUID = 1L;
 
-	private EventMessage event;
+	@Enumerated(EnumType.STRING)
+	@FullTextField
+	@ElementCollection
+	private List<AuthType> authType;
+
+	private AuthParamBasic authParamBasic;
+	private AuthParamOauth2 authParamOauth2;
+
+	@Column(length = 5000)
+	private String authTlsCert;
+
 }
