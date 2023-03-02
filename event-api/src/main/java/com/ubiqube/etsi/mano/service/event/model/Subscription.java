@@ -19,6 +19,13 @@ package com.ubiqube.etsi.mano.service.event.model;
 import java.util.List;
 import java.util.UUID;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+
+import com.ubiqube.etsi.mano.service.rest.model.ApiTypesEnum;
+import com.ubiqube.etsi.mano.service.rest.model.AuthentificationInformations;
+
 import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -32,11 +39,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
-
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
