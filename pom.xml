@@ -18,4 +18,11 @@
 		<module>event-quartz</module>
 		<module>event-jms</module>
 	</modules>
+	<scm>
+		<developerConnection>scm:git:https://github.com/openmsa/etsi-mano-event.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+	<properties>
+		<version.mano-fluxrest>3.0.0</version.mano-fluxrest>
+	</properties>
 </project>
