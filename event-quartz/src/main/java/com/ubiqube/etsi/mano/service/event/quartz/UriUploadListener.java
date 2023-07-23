@@ -12,7 +12,7 @@
  *     GNU General Public License for more details.
  *
  *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *     along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 package com.ubiqube.etsi.mano.service.event.quartz;
 
@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  * A kind of VNF rollback. We need to kepp track of the state while uploading.
  * This service will switch back the VNF state on failure.
  *
- * @author Olivier Vignaud <ovi@ubiqube.com>
+ * @author Olivier Vignaud {@literal <ovi@ubiqube.com>}
  *
  */
 public class UriUploadListener implements JobListener {
