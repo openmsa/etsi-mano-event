@@ -22,7 +22,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -52,6 +51,11 @@ public class FilterAttributes {
 
 	public static FilterAttributes of(final String attr, final String value) {
 		return new FilterAttributes(attr, value);
+	}
+
+	@Override
+	public String toString() {
+		return "FilterAttributes [attribute=" + attribute + ", value=" + value + "]";
 	}
 
 }
