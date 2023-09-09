@@ -24,8 +24,9 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
-import com.ubiqube.etsi.mano.service.rest.model.ApiTypesEnum;
-import com.ubiqube.etsi.mano.service.rest.model.AuthentificationInformations;
+import com.ubiqube.etsi.mano.dao.subscription.SubscriptionType;
+import com.ubiqube.etsi.mano.service.auth.model.ApiTypesEnum;
+import com.ubiqube.etsi.mano.service.auth.model.AuthentificationInformations;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;

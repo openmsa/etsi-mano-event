@@ -30,8 +30,17 @@
 		</dependency>
 		<dependency>
 			<groupId>com.ubiqube.mano</groupId>
-			<artifactId>mano-fluxrest</artifactId>
+			<artifactId>mano-db-auth</artifactId>
 			<version>${version.mano-fluxrest}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ubiqube.mano</groupId>
+			<artifactId>mano-db-subscription</artifactId>
+			<version>${version.mano-fluxrest}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

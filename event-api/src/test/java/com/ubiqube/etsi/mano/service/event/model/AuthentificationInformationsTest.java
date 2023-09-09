@@ -22,10 +22,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.ubiqube.etsi.mano.service.rest.model.AuthParamBasic;
-import com.ubiqube.etsi.mano.service.rest.model.AuthParamOauth2;
-import com.ubiqube.etsi.mano.service.rest.model.AuthType;
-import com.ubiqube.etsi.mano.service.rest.model.AuthentificationInformations;
+import com.ubiqube.etsi.mano.service.auth.model.AuthParamBasic;
+import com.ubiqube.etsi.mano.service.auth.model.AuthParamOauth2;
+import com.ubiqube.etsi.mano.service.auth.model.AuthType;
+import com.ubiqube.etsi.mano.service.auth.model.AuthentificationInformations;
 
 @SuppressWarnings("static-method")
 class AuthentificationInformationsTest {

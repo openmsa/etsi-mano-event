@@ -23,8 +23,9 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-import com.ubiqube.etsi.mano.service.rest.model.ApiTypesEnum;
-import com.ubiqube.etsi.mano.service.rest.model.AuthentificationInformations;
+import com.ubiqube.etsi.mano.dao.subscription.SubscriptionType;
+import com.ubiqube.etsi.mano.service.auth.model.ApiTypesEnum;
+import com.ubiqube.etsi.mano.service.auth.model.AuthentificationInformations;
 
 @SuppressWarnings("static-method")
 class SubscriptionTest {

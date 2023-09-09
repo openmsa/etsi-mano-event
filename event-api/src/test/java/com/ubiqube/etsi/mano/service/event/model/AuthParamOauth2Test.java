@@ -20,8 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-import com.ubiqube.etsi.mano.service.rest.model.AuthParamOauth2;
-import com.ubiqube.etsi.mano.service.rest.model.OAuth2GrantType;
+import com.ubiqube.etsi.mano.service.auth.model.AuthParamOauth2;
+import com.ubiqube.etsi.mano.service.auth.model.OAuth2GrantType;
 
 @SuppressWarnings("static-method")
 class AuthParamOauth2Test {
