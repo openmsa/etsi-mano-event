@@ -63,7 +63,7 @@ public class QuartzEventUtils {
 		if (null == objectId) {
 			throw new IllegalArgumentException("Event received With no ObjectId.");
 		}
-		return new ActionMessage(eventType, objectId, jobDataMap);
+		return new ActionMessage(eventType, objectId, "", jobDataMap);
 	}
 
 	public static EventMessage createEventMessage(final JobDataMap jobDataMap) {
