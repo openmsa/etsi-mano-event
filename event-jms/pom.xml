@@ -54,6 +54,11 @@
 			<artifactId>spring-data-commons</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>com.ubiqube.mano.auth</groupId>
+			<artifactId>auth-api</artifactId>
+			<version>${version.auth-api}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
