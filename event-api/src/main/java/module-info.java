@@ -17,12 +17,13 @@
 module com.ubiqube.etsi.mano.service.event {
 	exports com.ubiqube.etsi.mano.service.event;
 
-	requires com.ubiqube.etsi.mano.service.auth.model;
+	requires transitive com.ubiqube.etsi.mano.service.auth.model;
 	requires com.ubiqube.etsi.mano.dao.subscription;
 	requires lombok;
 	requires jakarta.annotation;
 	requires jakarta.persistence;
 	requires jakarta.validation;
+	requires jakarta.servlet;
 	requires org.hibernate.search.mapper.pojo;
 	requires spring.core;
 }

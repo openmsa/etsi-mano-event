@@ -40,7 +40,7 @@ class ActionMessageTest {
 	@Test
 	void testCtor002() throws Exception {
 		final UUID uuid = UUID.randomUUID();
-		final ActionMessage message = new ActionMessage(ActionType.GRANT_REQUEST, uuid, Map.of());
+		final ActionMessage message = new ActionMessage(ActionType.GRANT_REQUEST, uuid, "", Map.of());
 		assertEquals(ActionType.GRANT_REQUEST, message.getActionType());
 		assertEquals(uuid, message.getObjectId());
 		assertEquals(Map.of(), message.getParameters());

@@ -29,42 +29,50 @@ public class ActionMessage {
 	private UUID objectId;
 	@Nonnull
 	private Map<String, Object> parameters = new HashMap<>();
+	@Nonnull
+	private String tenantId;
 
 	public ActionMessage() {
 		objectId = UUID.randomUUID();
 	}
 
-	public ActionMessage(@Nonnull final ActionType actionType, @Nonnull final UUID objectId, @Nonnull final Map<String, Object> parameters) {
+	public ActionMessage(final ActionType actionType, final UUID objectId, final String tenantId, final Map<String, Object> parameters) {
 		this.actionType = actionType;
 		this.objectId = objectId;
 		this.parameters = parameters;
+		this.tenantId = tenantId;
 	}
 
-	@Nonnull
 	public ActionType getActionType() {
 		return actionType;
 	}
 
-	public void setActionType(@Nonnull final ActionType actionType) {
+	public void setActionType(final ActionType actionType) {
 		this.actionType = actionType;
 	}
 
-	@Nonnull
 	public UUID getObjectId() {
 		return objectId;
 	}
 
-	@Nonnull
 	public Map<String, Object> getParameters() {
 		return parameters;
 	}
 
-	public void setObjectId(@Nonnull final UUID objectId) {
+	public void setObjectId(final UUID objectId) {
 		this.objectId = objectId;
 	}
 
-	public void setParameters(@Nonnull final Map<String, Object> parameters) {
+	public void setParameters(final Map<String, Object> parameters) {
 		this.parameters = parameters;
+	}
+
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(final String tenantId) {
+		this.tenantId = tenantId;
 	}
 
 	@Override
