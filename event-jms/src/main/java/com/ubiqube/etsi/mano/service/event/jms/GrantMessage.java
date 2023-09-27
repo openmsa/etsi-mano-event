@@ -26,14 +26,17 @@ public class GrantMessage {
 	@Nonnull
 	private UUID objectId;
 	@Nonnull
+	private String tenantId;
+	@Nonnull
 	private Map<String, Object> parameters = new HashMap<>();
 
 	public GrantMessage() {
 		objectId = UUID.randomUUID();
 	}
 
-	public GrantMessage(@Nonnull final UUID objectId, @Nonnull final Map<String, Object> parameters) {
+	public GrantMessage(final UUID objectId, final String tenantId, final Map<String, Object> parameters) {
 		this.objectId = objectId;
+		this.tenantId = tenantId;
 		this.parameters = parameters;
 	}
 
@@ -41,15 +44,23 @@ public class GrantMessage {
 		return objectId;
 	}
 
-	public void setObjectId(final @Nonnull UUID objectId) {
+	public void setObjectId(final UUID objectId) {
 		this.objectId = objectId;
+	}
+
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(final String tenantId) {
+		this.tenantId = tenantId;
 	}
 
 	public Map<String, Object> getParameters() {
 		return parameters;
 	}
 
-	public void setParameters(final @Nonnull Map<String, Object> parameters) {
+	public void setParameters(final Map<String, Object> parameters) {
 		this.parameters = parameters;
 	}
 

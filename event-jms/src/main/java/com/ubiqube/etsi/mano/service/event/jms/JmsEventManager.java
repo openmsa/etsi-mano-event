@@ -27,6 +27,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import com.ubiqube.etsi.mano.auth.config.TenantHolder;
 import com.ubiqube.etsi.mano.service.event.ActionMessage;
 import com.ubiqube.etsi.mano.service.event.ActionType;
 import com.ubiqube.etsi.mano.service.event.EventManager;
@@ -34,7 +35,7 @@ import com.ubiqube.etsi.mano.service.event.SubscriptionEvent;
 import com.ubiqube.etsi.mano.service.event.model.EventMessage;
 import com.ubiqube.etsi.mano.service.event.model.NotificationEvent;
 
-import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 
 @Service
 public class JmsEventManager implements EventManager {
@@ -52,7 +53,7 @@ public class JmsEventManager implements EventManager {
 	}
 
 	@Override
-	public void sendNotification(final NotificationEvent notificationEvent, final UUID objectId, final Map<String, String> additionalParameters) {
+	public void sendNotification(final @Nullable NotificationEvent notificationEvent, final @Nullable UUID objectId, final @Nullable Map<String, String> additionalParameters) {
 		EventMessage msg = new EventMessage(notificationEvent, objectId, additionalParameters);
 		msg = eventMessageJpa.save(msg);
 		LOG.info("Sending notification {}", msg);
@@ -60,35 +61,38 @@ public class JmsEventManager implements EventManager {
 	}
 
 	@Override
-	public void sendActionVnfm(final ActionType actionType, final UUID objectId, final Map<String, Object> parameters) {
-		final ActionMessage msg = new ActionMessage(actionType, objectId, parameters);
-		jmsTemplate.convertAndSend(resolvQueueName(Constants.QUEUE_VNFM_ACTIONS), msg);
+	public void sendActionVnfm(final @Nullable ActionType actionType, final @Nullable UUID objectId, final @Nullable Map<String, Object> parameters) {
+		sendAction(Constants.QUEUE_VNFM_ACTIONS, actionType, objectId, parameters);
 	}
 
 	@Override
-	public void sendActionNfvo(final ActionType actionType, final UUID objectId, final Map<String, Object> parameters) {
-		final ActionMessage msg = new ActionMessage(actionType, objectId, parameters);
-		jmsTemplate.convertAndSend(resolvQueueName(Constants.QUEUE_NFVO_ACTIONS), msg);
+	public void sendActionNfvo(final @Nullable ActionType actionType, final @Nullable UUID objectId, final @Nullable Map<String, Object> parameters) {
+		sendAction(Constants.QUEUE_NFVO_ACTIONS, actionType, objectId, parameters);
 	}
 
 	@Override
-	public void sendGrant(final UUID objectId, final Map<String, Object> parameters) {
-		final GrantMessage msg = new GrantMessage(objectId, parameters);
+	public void sendGrant(final @Nullable UUID objectId, final @Nullable Map<String, Object> parameters) {
+		final String tenant = Objects.requireNonNull(TenantHolder.getTenantId());
+		final GrantMessage msg = new GrantMessage(objectId, tenant, parameters);
 		jmsTemplate.convertAndSend(resolvQueueName(Constants.QUEUE_GRANT), msg);
 	}
 
 	@Override
 	public void sendAction(final ActionType actionType, final UUID objectId) {
-		final ActionMessage msg = new ActionMessage(actionType, objectId, Map.of());
-		jmsTemplate.convertAndSend(resolvQueueName(Constants.QUEUE_COMMON_ACTION), msg);
+		sendAction(Constants.QUEUE_COMMON_ACTION, actionType, objectId, Map.of());
+	}
+
+	private void sendAction(final String queueName, @Nullable final ActionType actionType, @Nullable final UUID objectId, final Map<String, Object> parameters) {
+		final String tenant = Objects.requireNonNull(TenantHolder.getTenantId());
+		final ActionMessage msg = new ActionMessage(actionType, objectId, tenant, parameters);
+		jmsTemplate.convertAndSend(resolvQueueName(queueName), msg);
 	}
 
 	@Override
-	public void notificationSender(final SubscriptionEvent se) {
+	public void notificationSender(final @Nullable SubscriptionEvent se) {
 		jmsTemplate.convertAndSend(resolvQueueName(Constants.QUEUE_NOTIFICATION_SENDER), se);
 	}
 
-	@Nonnull
 	private String resolvQueueName(final String queueName) {
 		final ConfigurableListableBeanFactory configurableListableBeanFactory = configurableApplicationContext.getBeanFactory();
 		final String ret = configurableListableBeanFactory.resolveEmbeddedValue(queueName);
