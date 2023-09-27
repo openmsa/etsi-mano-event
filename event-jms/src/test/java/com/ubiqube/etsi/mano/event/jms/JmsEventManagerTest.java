@@ -31,6 +31,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 
+import com.ubiqube.etsi.mano.auth.config.TenantHolder;
 import com.ubiqube.etsi.mano.service.event.ActionType;
 import com.ubiqube.etsi.mano.service.event.SubscriptionEvent;
 import com.ubiqube.etsi.mano.service.event.jms.EventMessageJpa;
@@ -54,9 +55,14 @@ class JmsEventManagerTest {
 		when(configurableListableBeanFactory.resolveEmbeddedValue(anyString())).thenReturn("queue-name");
 	}
 
+	private JmsEventManager createService() {
+		TenantHolder.setTenantId("qa-tenant");
+		return new JmsEventManager(jmsTemplate, eventMessageJpa, configurable);
+	}
+
 	@Test
 	void testNotificationSender() {
-		final JmsEventManager jem = new JmsEventManager(jmsTemplate, eventMessageJpa, configurable);
+		final JmsEventManager jem = createService();
 		final SubscriptionEvent se = new SubscriptionEvent();
 		mockQueueName();
 		jem.notificationSender(se);
@@ -65,7 +71,8 @@ class JmsEventManagerTest {
 
 	@Test
 	void testSendAction() {
-		final JmsEventManager jem = new JmsEventManager(jmsTemplate, eventMessageJpa, configurable);
+		final JmsEventManager jem = createService();
+		TenantHolder.setTenantId("qa-tenant");
 		mockQueueName();
 		jem.sendAction(ActionType.MEPM_OPERATE, UUID.randomUUID());
 		assertTrue(true);
@@ -73,7 +80,7 @@ class JmsEventManagerTest {
 
 	@Test
 	void testSendActionNfvo() {
-		final JmsEventManager jem = new JmsEventManager(jmsTemplate, eventMessageJpa, configurable);
+		final JmsEventManager jem = createService();
 		mockQueueName();
 		jem.sendActionNfvo(ActionType.MEPM_OPERATE, UUID.randomUUID(), Map.of());
 		assertTrue(true);
@@ -81,7 +88,7 @@ class JmsEventManagerTest {
 
 	@Test
 	void testSendActionVnfm() {
-		final JmsEventManager jem = new JmsEventManager(jmsTemplate, eventMessageJpa, configurable);
+		final JmsEventManager jem = createService();
 		mockQueueName();
 		jem.sendActionVnfm(ActionType.MEPM_OPERATE, UUID.randomUUID(), Map.of());
 		assertTrue(true);
@@ -89,7 +96,7 @@ class JmsEventManagerTest {
 
 	@Test
 	void testSendGrant() {
-		final JmsEventManager jem = new JmsEventManager(jmsTemplate, eventMessageJpa, configurable);
+		final JmsEventManager jem = createService();
 		mockQueueName();
 		jem.sendGrant(UUID.randomUUID(), Map.of());
 		assertTrue(true);
@@ -97,7 +104,7 @@ class JmsEventManagerTest {
 
 	@Test
 	void testSendNotification() {
-		final JmsEventManager jem = new JmsEventManager(jmsTemplate, eventMessageJpa, configurable);
+		final JmsEventManager jem = createService();
 		mockQueueName();
 		jem.sendNotification(NotificationEvent.APPINSTANTIATE, UUID.randomUUID(), Map.of());
 		assertTrue(true);
