@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ubiqube.etsi.mano.service.event.model.EventMessage;
+import com.ubiqube.etsi.mano.service.event.EventManager;
 
 import jakarta.annotation.security.RolesAllowed;
 
@@ -43,24 +43,31 @@ public class EventController {
 
 	private final JmsTemplate jmsTemplate;
 
-	public EventController(final JmsTemplate jmsTemplate) {
+	private final EventManager eventManager;
+
+	public EventController(final JmsTemplate jmsTemplate, final EventManager eventManager) {
 		this.jmsTemplate = jmsTemplate;
+		this.eventManager = eventManager;
 	}
 
 	@PostMapping(value = "/notification", consumes = { "application/json" })
 	public ResponseEntity<Void> notification(@RequestBody final EventMessageDto ev) {
-		final EventMessage msg = map(ev);
-		jmsTemplate.convertAndSend("system.notifications", msg);
+		eventManager.sendNotification(ev.getNotificationEvent(), ev.getObjectId(), ev.getAdditionalParameters());
 		LOG.info("Notification sent.");
 		return ResponseEntity.noContent().build();
 	}
 
-	private static EventMessage map(final EventMessageDto ev) {
-		final EventMessage nev = new EventMessage();
-		nev.setAdditionalParameters(ev.getAdditionalParameters());
-		nev.setNotificationEvent(ev.getNotificationEvent());
-		nev.setObjectId(ev.getObjectId());
-		return nev;
+	@PostMapping(value = "/action/nfvo", consumes = { "application/json" })
+	public ResponseEntity<Void> nfvoAction(@RequestBody final ActionMessageDto ev) {
+		eventManager.sendActionNfvo(ev.getActionType(), ev.getObjectId(), ev.getParameters());
+		LOG.info("Notification sent.");
+		return ResponseEntity.noContent().build();
 	}
 
+	@PostMapping(value = "/action/vnfm", consumes = { "application/json" })
+	public ResponseEntity<Void> vnfmAction(@RequestBody final ActionMessageDto ev) {
+		eventManager.sendActionVnfm(ev.getActionType(), ev.getObjectId(), ev.getParameters());
+		LOG.info("Notification sent.");
+		return ResponseEntity.noContent().build();
+	}
 }

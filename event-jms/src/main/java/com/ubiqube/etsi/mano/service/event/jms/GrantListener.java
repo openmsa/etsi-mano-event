@@ -20,6 +20,7 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 
+import com.ubiqube.etsi.mano.auth.config.TenantHolder;
 import com.ubiqube.etsi.mano.service.event.GrantActionDispatcher;
 
 import jakarta.transaction.Transactional;
@@ -38,6 +39,7 @@ public class GrantListener {
 	@Transactional(TxType.NEVER)
 	@org.springframework.transaction.annotation.Transactional(propagation = Propagation.NEVER)
 	public void onEvent(final GrantMessage ev) {
+		TenantHolder.setTenantId(ev.getTenantId());
 		grantActionDispatcher.dispatch(ev.getObjectId());
 	}
 }
