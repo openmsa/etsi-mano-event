@@ -49,20 +49,22 @@ public class EventController {
 	@PostMapping(value = "/notification", consumes = { "application/json" })
 	public ResponseEntity<Void> notification(@RequestBody final EventMessageDto ev) {
 		eventManager.sendNotification(ev.getNotificationEvent(), ev.getObjectId(), ev.getAdditionalParameters());
-		LOG.info("Notification sent.");
-		return ResponseEntity.noContent().build();
+		return tailReturn();
 	}
 
 	@PostMapping(value = "/action/nfvo", consumes = { "application/json" })
 	public ResponseEntity<Void> nfvoAction(@RequestBody final ActionMessageDto ev) {
 		eventManager.sendActionNfvo(ev.getActionType(), ev.getObjectId(), ev.getParameters());
-		LOG.info("Notification sent.");
-		return ResponseEntity.noContent().build();
+		return tailReturn();
 	}
 
 	@PostMapping(value = "/action/vnfm", consumes = { "application/json" })
 	public ResponseEntity<Void> vnfmAction(@RequestBody final ActionMessageDto ev) {
 		eventManager.sendActionVnfm(ev.getActionType(), ev.getObjectId(), ev.getParameters());
+		return tailReturn();
+	}
+
+	private static ResponseEntity<Void> tailReturn() {
 		LOG.info("Notification sent.");
 		return ResponseEntity.noContent().build();
 	}

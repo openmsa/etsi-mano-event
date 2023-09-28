@@ -32,6 +32,7 @@ public class GrantMessage {
 
 	public GrantMessage() {
 		objectId = UUID.randomUUID();
+		tenantId = "BOOTSTRAP";
 	}
 
 	public GrantMessage(final UUID objectId, final String tenantId, final Map<String, Object> parameters) {
