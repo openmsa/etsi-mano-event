@@ -33,6 +33,7 @@ class ActionMessageTest {
 		message.setActionType(ActionType.GRANT_REQUEST);
 		message.setObjectId(UUID.randomUUID());
 		message.setParameters(Map.of());
+		message.setTenantId("tenant");
 		message.toString();
 		assertTrue(true);
 	}
@@ -40,9 +41,10 @@ class ActionMessageTest {
 	@Test
 	void testCtor002() throws Exception {
 		final UUID uuid = UUID.randomUUID();
-		final ActionMessage message = new ActionMessage(ActionType.GRANT_REQUEST, uuid, "", Map.of());
+		final ActionMessage message = new ActionMessage(ActionType.GRANT_REQUEST, uuid, "tenant", Map.of());
 		assertEquals(ActionType.GRANT_REQUEST, message.getActionType());
 		assertEquals(uuid, message.getObjectId());
 		assertEquals(Map.of(), message.getParameters());
+		assertEquals("tenant", message.getTenantId());
 	}
 }
