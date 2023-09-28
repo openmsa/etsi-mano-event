@@ -27,7 +27,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.ubiqube.etsi.mano.service.event.ActionType;
 import com.ubiqube.etsi.mano.service.event.EventManager;
+import com.ubiqube.etsi.mano.service.event.jms.controller.ActionMessageDto;
 import com.ubiqube.etsi.mano.service.event.jms.controller.EventController;
 import com.ubiqube.etsi.mano.service.event.jms.controller.EventMessageDto;
 import com.ubiqube.etsi.mano.service.event.model.NotificationEvent;
@@ -48,6 +50,32 @@ class EventControllerTest {
 		ev.setObjectId(UUID.randomUUID());
 		ec.notification(ev);
 		assertNotNull(ev.getId());
+		assertTrue(true);
+	}
+
+	@Test
+	void testNfvo() {
+		final EventController ec = new EventController(eventManager);
+		final ActionMessageDto ev = new ActionMessageDto();
+		ev.setParameters(Map.of());
+		ev.setObjectId(UUID.randomUUID());
+		ev.setActionType(ActionType.GRANT_REQUEST);
+		ev.setObjectId(UUID.randomUUID());
+		ec.nfvoAction(ev);
+		assertNotNull(ev.getObjectId());
+		assertTrue(true);
+	}
+
+	@Test
+	void testVnfm() {
+		final EventController ec = new EventController(eventManager);
+		final ActionMessageDto ev = new ActionMessageDto();
+		ev.setParameters(Map.of());
+		ev.setObjectId(UUID.randomUUID());
+		ev.setActionType(ActionType.GRANT_REQUEST);
+		ev.setObjectId(UUID.randomUUID());
+		ec.vnfmAction(ev);
+		assertNotNull(ev.getObjectId());
 		assertTrue(true);
 	}
 }

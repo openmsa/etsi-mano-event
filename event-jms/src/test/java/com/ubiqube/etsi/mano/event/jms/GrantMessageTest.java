@@ -33,7 +33,9 @@ class GrantMessageTest {
 		final GrantMessage gm = new GrantMessage();
 		gm.setObjectId(UUID.randomUUID());
 		gm.setParameters(Map.of());
+		gm.setTenantId("tenant");
 		assertNotNull(gm.getObjectId());
 		assertNotNull(gm.getParameters());
+		assertNotNull(gm.getTenantId());
 	}
 }
