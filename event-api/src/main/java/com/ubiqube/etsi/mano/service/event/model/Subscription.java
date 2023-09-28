@@ -16,6 +16,7 @@
  */
 package com.ubiqube.etsi.mano.service.event.model;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -74,7 +75,7 @@ public class Subscription {
 	private AuthentificationInformations authentication;
 
 	@FullTextField
-	private String callbackUri;
+	private URI callbackUri;
 
 	@Enumerated(EnumType.STRING)
 	@NotNull

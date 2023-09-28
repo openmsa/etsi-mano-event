@@ -18,6 +18,7 @@ package com.ubiqube.etsi.mano.service.event.model;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,7 +37,7 @@ class SubscriptionTest {
 		final Subscription res = Subscription.builder()
 				.api(ApiTypesEnum.SOL003)
 				.authentication(auth)
-				.callbackUri("")
+				.callbackUri(URI.create("http://localhost/"))
 				.filters(List.of())
 				.id(UUID.randomUUID())
 				.nodeFilter("")
@@ -52,7 +53,7 @@ class SubscriptionTest {
 		final String res = Subscription.builder()
 				.api(ApiTypesEnum.fromValue("SOL003"))
 				.authentication(auth)
-				.callbackUri("")
+				.callbackUri(URI.create("http://localhost/"))
 				.filters(List.of())
 				.id(UUID.randomUUID())
 				.nodeFilter("")
@@ -68,7 +69,7 @@ class SubscriptionTest {
 		final Subscription res = new Subscription();
 		res.setApi(ApiTypesEnum.SOL003);
 		res.setAuthentication(auth);
-		res.setCallbackUri("");
+		res.setCallbackUri(URI.create("http://localhost/"));
 		res.setFilters(List.of());
 		res.setId(UUID.randomUUID());
 		res.setNodeFilter("");

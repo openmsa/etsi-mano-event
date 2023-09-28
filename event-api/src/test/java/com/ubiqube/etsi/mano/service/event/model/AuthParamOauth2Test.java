@@ -18,6 +18,8 @@ package com.ubiqube.etsi.mano.service.event.model;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.net.URI;
+
 import org.junit.jupiter.api.Test;
 
 import com.ubiqube.etsi.mano.service.auth.model.AuthParamOauth2;
@@ -36,7 +38,7 @@ class AuthParamOauth2Test {
 				.o2IgnoreSsl(true)
 				.o2Password("")
 				.o2Username("")
-				.tokenEndpoint("")
+				.tokenEndpoint(URI.create("http://localhost/"))
 				.build();
 		assertNotNull(res);
 		assertNotNull(res.toString());
@@ -52,7 +54,7 @@ class AuthParamOauth2Test {
 				.o2IgnoreSsl(true)
 				.o2Password("")
 				.o2Username("")
-				.tokenEndpoint("")
+				.tokenEndpoint(URI.create("http://localhost/"))
 				.toString();
 		assertNotNull(res);
 	}
@@ -67,7 +69,7 @@ class AuthParamOauth2Test {
 		apo.setO2IgnoreSsl(false);
 		apo.setO2Password("");
 		apo.setO2Username("");
-		apo.setTokenEndpoint("");
+		apo.setTokenEndpoint(URI.create("http://localhost/"));
 		assertNotNull(apo.getClientId());
 		assertNotNull(apo.getClientSecret());
 		assertNotNull(apo.getGrantType());
