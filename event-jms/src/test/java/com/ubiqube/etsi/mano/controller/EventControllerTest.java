@@ -26,8 +26,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.jms.core.JmsTemplate;
 
+import com.ubiqube.etsi.mano.service.event.EventManager;
 import com.ubiqube.etsi.mano.service.event.jms.controller.EventController;
 import com.ubiqube.etsi.mano.service.event.jms.controller.EventMessageDto;
 import com.ubiqube.etsi.mano.service.event.model.NotificationEvent;
@@ -36,11 +36,11 @@ import com.ubiqube.etsi.mano.service.event.model.NotificationEvent;
 class EventControllerTest {
 
 	@Mock
-	private JmsTemplate JmsTemplate;
+	private EventManager eventManager;
 
 	@Test
 	void testName() {
-		final EventController ec = new EventController(JmsTemplate);
+		final EventController ec = new EventController(eventManager);
 		final EventMessageDto ev = new EventMessageDto();
 		ev.setAdditionalParameters(Map.of());
 		ev.setId(UUID.randomUUID());
