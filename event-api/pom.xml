@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ubiqube.mano.event</groupId>
 		<artifactId>mano-event-aggregator</artifactId>
-		<version>3.1.0-SNAPSHOT</version>
+		<version>3.2.0</version>
 	</parent>
 	<artifactId>event-api</artifactId>
 	<dependencies>
@@ -31,12 +31,12 @@
 		<dependency>
 			<groupId>com.ubiqube.mano</groupId>
 			<artifactId>mano-db-auth</artifactId>
-			<version>${version.mano-fluxrest}</version>
+			<version>3.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ubiqube.mano</groupId>
 			<artifactId>mano-db-subscription</artifactId>
-			<version>${version.mano-fluxrest}</version>
+			<version>3.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
