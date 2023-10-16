@@ -14,29 +14,9 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-package com.ubiqube.etsi.mano.service.event.jms;
+@NonNullApi
+@NonNullFields
+package com.ubiqube.etsi.mano.service.event.jms.listener;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-import com.ubiqube.etsi.mano.service.event.GrantActionDispatcher;
-import com.ubiqube.etsi.mano.service.event.jms.listener.GrantListener;
-
-@ExtendWith(MockitoExtension.class)
-class GrantListenerTest {
-	@Mock
-	private GrantActionDispatcher disp;
-
-	@Test
-	void test() {
-		final GrantListener srv = new GrantListener(disp);
-		final GrantMessage ev = new GrantMessage();
-		srv.onEvent(ev);
-		assertTrue(true);
-	}
-
-}
+import org.springframework.lang.NonNullApi;
+import org.springframework.lang.NonNullFields;

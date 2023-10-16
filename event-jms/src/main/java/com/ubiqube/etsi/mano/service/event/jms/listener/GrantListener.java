@@ -14,7 +14,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-package com.ubiqube.etsi.mano.service.event.jms;
+package com.ubiqube.etsi.mano.service.event.jms.listener;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,8 @@ import org.springframework.transaction.annotation.Propagation;
 
 import com.ubiqube.etsi.mano.auth.config.TenantHolder;
 import com.ubiqube.etsi.mano.service.event.GrantActionDispatcher;
+import com.ubiqube.etsi.mano.service.event.jms.Constants;
+import com.ubiqube.etsi.mano.service.event.jms.GrantMessage;
 
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;

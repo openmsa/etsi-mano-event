@@ -25,6 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.ubiqube.etsi.mano.service.event.ActionController;
 import com.ubiqube.etsi.mano.service.event.ActionMessage;
+import com.ubiqube.etsi.mano.service.event.jms.listener.NfvoActionListener;
 
 @ExtendWith(MockitoExtension.class)
 class NfvoActionListenerTest {

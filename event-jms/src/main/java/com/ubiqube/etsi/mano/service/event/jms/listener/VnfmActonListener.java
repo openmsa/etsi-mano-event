@@ -14,7 +14,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-package com.ubiqube.etsi.mano.service.event.jms;
+package com.ubiqube.etsi.mano.service.event.jms.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Propagation;
 
 import com.ubiqube.etsi.mano.service.event.ActionMessage;
 import com.ubiqube.etsi.mano.service.event.VnfmActionComtroller;
+import com.ubiqube.etsi.mano.service.event.jms.Constants;
 
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;

@@ -15,6 +15,7 @@
 		<module>event-api</module>
 		<module>event-quartz</module>
 		<module>event-jms</module>
+		<module>event-commons</module>
 	</modules>
 	<scm>
 		<developerConnection>scm:git:https://github.com/openmsa/etsi-mano-event.git</developerConnection>

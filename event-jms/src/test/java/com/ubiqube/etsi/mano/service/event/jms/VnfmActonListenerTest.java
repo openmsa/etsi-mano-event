@@ -25,6 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.ubiqube.etsi.mano.service.event.ActionMessage;
 import com.ubiqube.etsi.mano.service.event.VnfmActionComtroller;
+import com.ubiqube.etsi.mano.service.event.jms.listener.VnfmActonListener;
 
 @ExtendWith(MockitoExtension.class)
 class VnfmActonListenerTest {

@@ -24,6 +24,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.ubiqube.etsi.mano.service.event.NotificationController;
+import com.ubiqube.etsi.mano.service.event.jms.listener.NotificationListener;
 import com.ubiqube.etsi.mano.service.event.model.EventMessage;
 
 @ExtendWith(MockitoExtension.class)

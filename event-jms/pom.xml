@@ -14,12 +14,29 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>com.ubiqube.mano.event</groupId>
+			<artifactId>event-commons</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.jms</groupId>
@@ -42,21 +59,13 @@
 			<artifactId>spring-context</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>jakarta.transaction</groupId>
 			<artifactId>jakarta.transaction-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.ubiqube.mano.auth</groupId>
 			<artifactId>auth-api</artifactId>
-			<version>3.2.1-SNAPSHOT</version>
+			<version>${version.auth-api}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -64,15 +73,19 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
