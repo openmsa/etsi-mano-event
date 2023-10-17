@@ -12,42 +12,35 @@
  *     GNU General Public License for more details.
  *
  *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see https://www.gnu.org/licenses/.
+ *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 package com.ubiqube.etsi.mano.service.kafka.listener;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.ubiqube.etsi.mano.service.event.ActionMessage;
-import com.ubiqube.etsi.mano.service.event.VnfmActionComtroller;
+import com.ubiqube.etsi.mano.auth.config.TenantHolder;
+import com.ubiqube.etsi.mano.service.event.GrantActionDispatcher;
+import com.ubiqube.etsi.mano.service.event.jms.GrantMessage;
 import com.ubiqube.etsi.mano.service.kafka.Constants;
 
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
 
-/**
- * @author Olivier Vignaud
- */
 @Service
-public class KafkaVnfmActonListener {
+@Transactional(TxType.NEVER)
+public class KafkaGrantListener {
+	private final GrantActionDispatcher grantActionDispatcher;
 
-	private static final Logger LOG = LoggerFactory.getLogger(KafkaVnfmActonListener.class);
-
-	private final VnfmActionComtroller actionController;
-
-	public KafkaVnfmActonListener(final VnfmActionComtroller actionController) {
-		this.actionController = actionController;
+	public KafkaGrantListener(final GrantActionDispatcher grantActionDispatcher) {
+		this.grantActionDispatcher = grantActionDispatcher;
 	}
 
-	@KafkaListener(topics = Constants.QUEUE_VNFM_ACTIONS, groupId = "mano", concurrency = "10")
+	@KafkaListener(topics = Constants.QUEUE_GRANT, groupId = "mano", concurrency = "5")
 	@Transactional(TxType.NEVER)
-	public void onEvent(final ActionMessage ev) {
-		LOG.info("KAFKA VNFM ActionController Receiving Action: {}", ev);
-		actionController.onEvent(ev);
-		LOG.info("KAFKA VNFM ActionController Done for event: {}", ev);
+	public void onEvent(final GrantMessage ev) {
+		TenantHolder.setTenantId(ev.getTenantId());
+		grantActionDispatcher.dispatch(ev.getObjectId());
 	}
 
 }

@@ -21,6 +21,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.retrytopic.RetryTopicConfiguration;
+import org.springframework.kafka.retrytopic.RetryTopicConfigurationBuilder;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -35,11 +38,20 @@ public class KafkaConfig {
 	}
 
 	@Bean
-	public KafkaListenerContainerFactory<?> kafkaJsonListenerContainerFactory(final StringJsonMessageConverter jsonMessageConverter,
+	KafkaListenerContainerFactory<?> kafkaJsonListenerContainerFactory(final StringJsonMessageConverter jsonMessageConverter,
 			final ConsumerFactory<String, String> defaultKafkaConsumerFactory) {
 		final ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(defaultKafkaConsumerFactory);
 		factory.setRecordMessageConverter(jsonMessageConverter);
 		return factory;
+	}
+
+	@Bean
+	RetryTopicConfiguration myRetryTopic(final KafkaTemplate<String, ?> template) {
+		return RetryTopicConfigurationBuilder
+				.newInstance()
+				.fixedBackOff(3000)
+				.maxAttempts(1)
+				.create(template);
 	}
 }

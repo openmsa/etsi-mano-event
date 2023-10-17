@@ -12,7 +12,7 @@
  *     GNU General Public License for more details.
  *
  *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see https://www.gnu.org/licenses/.
+ *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 package com.ubiqube.etsi.mano.service.kafka.listener;
 
@@ -22,32 +22,35 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import com.ubiqube.etsi.mano.service.event.ActionMessage;
-import com.ubiqube.etsi.mano.service.event.VnfmActionComtroller;
+import com.ubiqube.etsi.mano.service.event.CommonActionDispatcher;
 import com.ubiqube.etsi.mano.service.kafka.Constants;
 
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
 
 /**
- * @author Olivier Vignaud
+ *
+ * @author Olivier Vignaud {@literal <ovi@ubiqube.com>}
+ *
  */
 @Service
-public class KafkaVnfmActonListener {
+@Transactional(TxType.NEVER)
+public class KafkaCommonActionListener {
 
-	private static final Logger LOG = LoggerFactory.getLogger(KafkaVnfmActonListener.class);
+	private static final Logger LOG = LoggerFactory.getLogger(KafkaCommonActionListener.class);
 
-	private final VnfmActionComtroller actionController;
+	private final CommonActionDispatcher actionController;
 
-	public KafkaVnfmActonListener(final VnfmActionComtroller actionController) {
+	public KafkaCommonActionListener(final CommonActionDispatcher actionController) {
 		this.actionController = actionController;
 	}
 
-	@KafkaListener(topics = Constants.QUEUE_VNFM_ACTIONS, groupId = "mano", concurrency = "10")
+	@KafkaListener(topics = Constants.QUEUE_COMMON_ACTION, groupId = "mano", concurrency = "5")
 	@Transactional(TxType.NEVER)
 	public void onEvent(final ActionMessage ev) {
-		LOG.info("KAFKA VNFM ActionController Receiving Action: {}", ev);
-		actionController.onEvent(ev);
-		LOG.info("KAFKA VNFM ActionController Done for event: {}", ev);
+		LOG.info("JMS Common ActionController Receiving Action: {}", ev);
+		actionController.dispatch(ev.getActionType(), ev.getObjectId(), ev.getParameters());
+		LOG.info("JMS Common ActionController Done for event: {}", ev);
 	}
 
 }

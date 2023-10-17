@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.ubiqube.etsi.mano.service.event.NotificationController;
 import com.ubiqube.etsi.mano.service.event.model.EventMessage;
+import com.ubiqube.etsi.mano.service.kafka.Constants;
 
 @Service
 public class KafkaNotificationListener {
@@ -34,7 +35,7 @@ public class KafkaNotificationListener {
 		this.notificationController = notificationController;
 	}
 
-	@KafkaListener(topics = "notification", groupId = "foo", concurrency = "2")
+	@KafkaListener(topics = Constants.QUEUE_NOTIFICATION, groupId = "mano", concurrency = "2")
 	public void onEvent(final EventMessage ev) {
 		LOG.info("Notification Controller Received event: {}", ev);
 		notificationController.onEvent(ev);

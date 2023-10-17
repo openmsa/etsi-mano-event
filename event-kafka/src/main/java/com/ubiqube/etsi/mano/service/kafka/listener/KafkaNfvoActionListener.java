@@ -38,7 +38,7 @@ public class KafkaNfvoActionListener {
 		this.actionController = actionController;
 	}
 
-	@KafkaListener(topics = Constants.QUEUE_NFVO_ACTIONS, concurrency = "10")
+	@KafkaListener(topics = Constants.QUEUE_NFVO_ACTIONS, groupId = "mano", concurrency = "10")
 	@Transactional(TxType.NEVER)
 	public void onEvent(final ActionMessage ev) {
 		LOG.info("JMS NFVO ActionController Receiving Action: {}", ev);
