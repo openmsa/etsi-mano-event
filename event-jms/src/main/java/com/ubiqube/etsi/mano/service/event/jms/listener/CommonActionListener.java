@@ -14,7 +14,7 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-package com.ubiqube.etsi.mano.service.event.jms;
+package com.ubiqube.etsi.mano.service.event.jms.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Propagation;
 
 import com.ubiqube.etsi.mano.service.event.ActionMessage;
 import com.ubiqube.etsi.mano.service.event.CommonActionDispatcher;
+import com.ubiqube.etsi.mano.service.event.jms.Constants;
 
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
@@ -35,13 +36,13 @@ import jakarta.transaction.Transactional.TxType;
  */
 @Service
 @Transactional(TxType.NEVER)
-public class CommonActionJms {
+public class CommonActionListener {
 
-	private static final Logger LOG = LoggerFactory.getLogger(CommonActionJms.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CommonActionListener.class);
 
 	private final CommonActionDispatcher actionController;
 
-	public CommonActionJms(final CommonActionDispatcher actionController) {
+	public CommonActionListener(final CommonActionDispatcher actionController) {
 		this.actionController = actionController;
 	}
 

@@ -25,7 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.ubiqube.etsi.mano.service.event.ActionMessage;
 import com.ubiqube.etsi.mano.service.event.CommonActionDispatcher;
-import com.ubiqube.etsi.mano.service.event.jms.CommonActionJms;
+import com.ubiqube.etsi.mano.service.event.jms.listener.CommonActionListener;
 
 @ExtendWith(MockitoExtension.class)
 class CommonActionJmsTest {
@@ -34,7 +34,7 @@ class CommonActionJmsTest {
 
 	@Test
 	void testName() {
-		final CommonActionJms caj = new CommonActionJms(actionController);
+		final CommonActionListener caj = new CommonActionListener(actionController);
 		final ActionMessage ev = new ActionMessage();
 		caj.onEvent(ev);
 		assertTrue(true);
