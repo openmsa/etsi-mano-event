@@ -21,10 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
-
 import com.ubiqube.etsi.mano.dao.subscription.SubscriptionType;
 import com.ubiqube.etsi.mano.service.auth.model.ApiTypesEnum;
 import com.ubiqube.etsi.mano.service.auth.model.AuthentificationInformations;
@@ -59,27 +55,21 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Indexed
 public class Subscription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@DocumentId
-	@FullTextField
 	private UUID id;
 
 	// Used for rebuilding links.
 	@Enumerated(EnumType.STRING)
-	@FullTextField
 	private ApiTypesEnum api;
 	@Nullable
 	private AuthentificationInformations authentication;
 
-	@FullTextField
 	private URI callbackUri;
 
 	@Enumerated(EnumType.STRING)
 	@NotNull
-	@FullTextField
 	private SubscriptionType subscriptionType;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

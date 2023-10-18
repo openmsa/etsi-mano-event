@@ -24,6 +24,5 @@ module com.ubiqube.etsi.mano.service.event {
 	requires jakarta.persistence;
 	requires jakarta.validation;
 	requires jakarta.servlet;
-	requires org.hibernate.search.mapper.pojo;
 	requires spring.core;
 }
