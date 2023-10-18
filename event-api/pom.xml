@@ -31,12 +31,12 @@
 		<dependency>
 			<groupId>com.ubiqube.mano</groupId>
 			<artifactId>mano-db-auth</artifactId>
-			<version>3.2.1-SNAPSHOT</version>
+			<version>${version.mano-db-auth}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ubiqube.mano</groupId>
 			<artifactId>mano-db-subscription</artifactId>
-			<version>3.2.1-SNAPSHOT</version>
+			<version>${version.mano-db-subscription}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
