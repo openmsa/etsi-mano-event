@@ -11,7 +11,7 @@
 		<dependency>
 			<groupId>com.ubiqube.mano.event</groupId>
 			<artifactId>event-api</artifactId>
-			<version>${project.version}</version>
+			<version>${version.event-api}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>

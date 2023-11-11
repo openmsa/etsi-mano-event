@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.ubiqube.mano.event</groupId>
 		<artifactId>mano-event-aggregator</artifactId>
-		<version>3.2.1</version>
+		<version>3.2.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>event-api</artifactId>
 	<dependencies>
