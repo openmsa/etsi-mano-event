@@ -50,9 +50,7 @@ public class MessageListenerMethodInterceptor<T extends MessageListener> impleme
 		if (record == null) {
 			return invocation.proceed();
 		}
-		if (log.isDebugEnabled()) {
-			log.debug("Wrapping onMessage call");
-		}
+		log.debug("Wrapping onMessage call");
 		final Span span = this.kafkaTracing.nextSpan((ConsumerRecord<?, ?>) record).name("on-message").start();
 		try (Tracer.SpanInScope ws = this.tracer.withSpanInScope(span)) {
 			return invocation.proceed();

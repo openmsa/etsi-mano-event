@@ -58,17 +58,13 @@ public class SleuthKafkaAspect {
 		if (listener instanceof final AbstractMessageListenerContainer container) {
 			final Object someMessageListener = container.getContainerProperties().getMessageListener();
 			if (someMessageListener == null) {
-				if (log.isDebugEnabled()) {
-					log.debug("No message listener to wrap. Proceeding");
-				}
+				log.debug("No message listener to wrap. Proceeding");
 			} else if (someMessageListener instanceof MessageListener) {
 				container.setupMessageListener(createProxy(someMessageListener));
 			} else {
-				if (log.isDebugEnabled()) {
-					log.debug("ATM we don't support Batch message listeners");
-				}
+				log.debug("ATM we don't support Batch message listeners");
 			}
-		} else if (log.isDebugEnabled()) {
+		} else {
 			log.debug("Can't wrap this listener. Proceeding");
 		}
 		return listener;
