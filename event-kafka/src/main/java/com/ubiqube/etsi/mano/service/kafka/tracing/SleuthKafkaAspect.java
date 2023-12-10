@@ -57,9 +57,7 @@ public class SleuthKafkaAspect {
 		final MessageListenerContainer listener = (MessageListenerContainer) pjp.proceed();
 		if (listener instanceof final AbstractMessageListenerContainer container) {
 			final Object someMessageListener = container.getContainerProperties().getMessageListener();
-			if (someMessageListener == null) {
-				log.debug("No message listener to wrap. Proceeding");
-			} else if (someMessageListener instanceof MessageListener) {
+			if (someMessageListener instanceof MessageListener) {
 				container.setupMessageListener(createProxy(someMessageListener));
 			} else {
 				log.debug("ATM we don't support Batch message listeners");
