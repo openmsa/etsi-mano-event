@@ -16,7 +16,11 @@
  */
 package com.ubiqube.etsi.mano.service.event.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,4 +32,15 @@ class FilterAttributesTest {
 		assertNotNull(srv.toString());
 	}
 
+	@Test
+	void testFilterAttributes() {
+		// Id should not be used in comparison.
+		final FilterAttributes fa1 = new FilterAttributes("attr", "value");
+		final FilterAttributes fa2 = new FilterAttributes("attr", "value");
+		assertEquals(fa1, fa2);
+		fa1.setId(UUID.randomUUID());
+		assertEquals(fa1, fa2);
+		fa2.setAttribute("other");
+		assertNotEquals(fa1, fa2);
+	}
 }

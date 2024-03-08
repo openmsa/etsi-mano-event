@@ -16,6 +16,7 @@
  */
 package com.ubiqube.etsi.mano.service.event.model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -56,6 +57,26 @@ public class FilterAttributes {
 	@Override
 	public String toString() {
 		return "FilterAttributes [attribute=" + attribute + ", value=" + value + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(attribute, value);
+	}
+
+	/**
+	 * Don't use `id` on comparison.
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if ((obj == null) || (getClass() != obj.getClass())) {
+			return false;
+		}
+		final FilterAttributes other = (FilterAttributes) obj;
+		return Objects.equals(attribute, other.attribute) && Objects.equals(value, other.value);
 	}
 
 }
