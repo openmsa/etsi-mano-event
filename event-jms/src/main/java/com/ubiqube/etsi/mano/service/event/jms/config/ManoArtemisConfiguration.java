@@ -16,6 +16,8 @@
  */
 package com.ubiqube.etsi.mano.service.event.jms.config;
 
+import java.util.Optional;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
@@ -28,6 +30,7 @@ import org.springframework.jms.support.converter.MessageType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import io.micrometer.observation.ObservationRegistry;
 import jakarta.jms.ConnectionFactory;
 
 @Configuration
@@ -45,12 +48,15 @@ public class ManoArtemisConfiguration {
 	}
 
 	@Bean
-	JmsListenerContainerFactory<DefaultMessageListenerContainer> jmsListenerContainerFactory(final ConnectionFactory connectionFactory, final MessageConverter messageConverter) {
+	JmsListenerContainerFactory<DefaultMessageListenerContainer> jmsListenerContainerFactory(final ConnectionFactory connectionFactory, final MessageConverter messageConverter, final Optional<ObservationRegistry> registry) {
 		final DefaultJmsListenerContainerFactory jmsListenerContainerFactory = new DefaultJmsListenerContainerFactory();
 		jmsListenerContainerFactory.setConcurrency("5-10");
 		jmsListenerContainerFactory.setSessionTransacted(Boolean.FALSE);
 		jmsListenerContainerFactory.setConnectionFactory(connectionFactory);
 		jmsListenerContainerFactory.setMessageConverter(messageConverter);
+		if (registry.isPresent()) {
+			jmsListenerContainerFactory.setObservationRegistry(registry.get());
+		}
 		return jmsListenerContainerFactory;
 	}
 

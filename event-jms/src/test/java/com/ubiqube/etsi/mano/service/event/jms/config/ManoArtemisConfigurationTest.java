@@ -18,6 +18,8 @@ package com.ubiqube.etsi.mano.service.event.jms.config;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -27,8 +29,8 @@ import org.springframework.jms.listener.DefaultMessageListenerContainer;
 import org.springframework.jms.support.converter.MessageConverter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ubiqube.etsi.mano.service.event.jms.config.ManoArtemisConfiguration;
 
+import io.micrometer.observation.ObservationRegistry;
 import jakarta.jms.ConnectionFactory;
 
 @ExtendWith(MockitoExtension.class)
@@ -39,6 +41,8 @@ class ManoArtemisConfigurationTest {
 	private ConnectionFactory conn;
 	@Mock
 	private MessageConverter messageConv;
+	@Mock
+	private ObservationRegistry registry;
 
 	@Test
 	void tesMessageConverter() throws Exception {
@@ -50,7 +54,7 @@ class ManoArtemisConfigurationTest {
 	@Test
 	void testName() throws Exception {
 		final ManoArtemisConfiguration mac = new ManoArtemisConfiguration();
-		final JmsListenerContainerFactory<DefaultMessageListenerContainer> res = mac.jmsListenerContainerFactory(conn, messageConv);
+		final JmsListenerContainerFactory<DefaultMessageListenerContainer> res = mac.jmsListenerContainerFactory(conn, messageConv, Optional.of(registry));
 		assertNotNull(res);
 	}
 }
