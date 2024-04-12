@@ -82,6 +82,8 @@ public class Subscription implements Auditable {
 	@JoinColumn
 	private List<FilterAttributes> filters = new ArrayList<>();
 
+	private LcmOpOccNotificationVerbosityTypeEnum verbosity;
+
 	private String version;
 
 	@Column(length = 5000)
