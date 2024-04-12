@@ -62,6 +62,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @EntityListeners(AuditListener.class)
 public class Subscription implements Auditable {
+	/** Serial. */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
