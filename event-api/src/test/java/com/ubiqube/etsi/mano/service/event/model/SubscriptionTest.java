@@ -17,6 +17,7 @@
 package com.ubiqube.etsi.mano.service.event.model;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.net.URI;
 import java.util.List;
@@ -32,7 +33,7 @@ import com.ubiqube.etsi.mano.service.auth.model.AuthentificationInformations;
 class SubscriptionTest {
 
 	@Test
-	void testBuilder() throws Exception {
+	void testBuilder() {
 		final AuthentificationInformations auth = new AuthentificationInformations();
 		final Subscription res = Subscription.builder()
 				.api(ApiTypesEnum.SOL003)
@@ -43,12 +44,14 @@ class SubscriptionTest {
 				.nodeFilter("")
 				.subscriptionType(SubscriptionType.ALARM)
 				.version("")
+				.audit(null)
+				.verbosity(null)
 				.build();
 		assertNotNull(res);
 	}
 
 	@Test
-	void testBuilderToString() throws Exception {
+	void testBuilderToString() {
 		final AuthentificationInformations auth = new AuthentificationInformations();
 		final String res = Subscription.builder()
 				.api(ApiTypesEnum.fromValue("SOL003"))
@@ -64,7 +67,7 @@ class SubscriptionTest {
 	}
 
 	@Test
-	void testSetterGetter() throws Exception {
+	void testSetterGetter() {
 		final AuthentificationInformations auth = new AuthentificationInformations();
 		final Subscription res = new Subscription();
 		res.setApi(ApiTypesEnum.SOL003);
@@ -75,8 +78,11 @@ class SubscriptionTest {
 		res.setNodeFilter("");
 		res.setSubscriptionType(SubscriptionType.ALARM);
 		res.setVersion("");
+		res.setVerbosity(LcmOpOccNotificationVerbosityTypeEnum.FULL);
+		res.setAudit(null);
 		assertNotNull(res);
 		assertNotNull(res.getApi());
+		assertNull(res.getAudit());
 		assertNotNull(res.getAuthentication());
 		assertNotNull(res.getCallbackUri());
 		assertNotNull(res.getFilters());
@@ -84,5 +90,6 @@ class SubscriptionTest {
 		assertNotNull(res.getNodeFilter());
 		assertNotNull(res.getSubscriptionType());
 		assertNotNull(res.getVersion());
+		assertNotNull(res.getVerbosity());
 	}
 }

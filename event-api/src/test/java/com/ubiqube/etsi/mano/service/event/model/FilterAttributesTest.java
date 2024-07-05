@@ -42,5 +42,7 @@ class FilterAttributesTest {
 		assertEquals(fa1, fa2);
 		fa2.setAttribute("other");
 		assertNotEquals(fa1, fa2);
+		fa1.hashCode();
+		fa2.hashCode();
 	}
 }
