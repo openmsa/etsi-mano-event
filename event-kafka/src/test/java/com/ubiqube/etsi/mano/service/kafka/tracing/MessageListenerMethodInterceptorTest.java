@@ -45,7 +45,7 @@ class MessageListenerMethodInterceptorTest {
 
 	@Test
 	void testBase() throws Throwable {
-		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor<>(kafkaTracing, tracer);
+		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor(kafkaTracing, tracer);
 		final MethodInvocation inv = Mockito.mock(MethodInvocation.class);
 		when(inv.getMethod()).thenReturn(getOnMessageMethod());
 		//
@@ -56,7 +56,7 @@ class MessageListenerMethodInterceptorTest {
 
 	@Test
 	void testNotessage() throws Throwable {
-		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor<>(kafkaTracing, tracer);
+		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor(kafkaTracing, tracer);
 		final MethodInvocation inv = Mockito.mock(MethodInvocation.class);
 		when(inv.getMethod()).thenReturn(getAnyOtherMethod());
 		//
@@ -66,7 +66,7 @@ class MessageListenerMethodInterceptorTest {
 
 	@Test
 	void testBaseRecord01() throws Throwable {
-		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor<>(kafkaTracing, tracer);
+		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor(kafkaTracing, tracer);
 		final MethodInvocation inv = Mockito.mock(MethodInvocation.class);
 		when(inv.getMethod()).thenReturn(getOnMessageMethod());
 		//
@@ -77,7 +77,7 @@ class MessageListenerMethodInterceptorTest {
 
 	@Test
 	void testBaseRecord02() throws Throwable {
-		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor<>(kafkaTracing, tracer);
+		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor(kafkaTracing, tracer);
 		final MethodInvocation inv = Mockito.mock(MethodInvocation.class);
 		when(inv.getMethod()).thenReturn(getOnMessageMethod());
 		//
@@ -94,7 +94,7 @@ class MessageListenerMethodInterceptorTest {
 
 	@Test
 	void testBaseRecord02Error01() throws Throwable {
-		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor<>(kafkaTracing, tracer);
+		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor(kafkaTracing, tracer);
 		final MethodInvocation inv = Mockito.mock(MethodInvocation.class);
 		when(inv.getMethod()).thenReturn(getOnMessageMethod());
 		//
@@ -112,7 +112,7 @@ class MessageListenerMethodInterceptorTest {
 
 	@Test
 	void testBaseRecord02Error02() throws Throwable {
-		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor<>(kafkaTracing, tracer);
+		final MessageListenerMethodInterceptor srv = new MessageListenerMethodInterceptor(kafkaTracing, tracer);
 		final MethodInvocation inv = Mockito.mock(MethodInvocation.class);
 		when(inv.getMethod()).thenReturn(getOnMessageMethod());
 		//
