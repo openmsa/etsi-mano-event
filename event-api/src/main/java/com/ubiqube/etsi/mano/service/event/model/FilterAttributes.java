@@ -16,6 +16,7 @@
  */
 package com.ubiqube.etsi.mano.service.event.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -36,7 +37,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @NoArgsConstructor
-public class FilterAttributes {
+public class FilterAttributes implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;

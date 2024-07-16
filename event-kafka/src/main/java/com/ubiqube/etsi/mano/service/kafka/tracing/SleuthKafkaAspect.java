@@ -55,7 +55,7 @@ public class SleuthKafkaAspect {
 	@Around("anyCreateListenerContainer() || anyCreateContainer()")
 	public Object wrapListenerContainerCreation(final ProceedingJoinPoint pjp) throws Throwable {
 		final MessageListenerContainer listener = (MessageListenerContainer) pjp.proceed();
-		if (listener instanceof final AbstractMessageListenerContainer container) {
+		if (listener instanceof final AbstractMessageListenerContainer<?, ?> container) {
 			final Object someMessageListener = container.getContainerProperties().getMessageListener();
 			if (someMessageListener instanceof MessageListener) {
 				container.setupMessageListener(createProxy(someMessageListener));

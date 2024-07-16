@@ -21,13 +21,12 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.kafka.listener.MessageListener;
 
 import brave.Span;
 import brave.Tracer;
 import brave.kafka.clients.KafkaTracing;
 
-public class MessageListenerMethodInterceptor<T extends MessageListener> implements MethodInterceptor {
+public class MessageListenerMethodInterceptor implements MethodInterceptor {
 
 	private static final Log log = LogFactory.getLog(MessageListenerMethodInterceptor.class);
 
@@ -46,12 +45,12 @@ public class MessageListenerMethodInterceptor<T extends MessageListener> impleme
 			return invocation.proceed();
 		}
 		final Object[] arguments = invocation.getArguments();
-		final Object record = record(arguments);
-		if (record == null) {
+		final Object rec = rec(arguments);
+		if (rec == null) {
 			return invocation.proceed();
 		}
 		log.debug("Wrapping onMessage call");
-		final Span span = this.kafkaTracing.nextSpan((ConsumerRecord<?, ?>) record).name("on-message").start();
+		final Span span = this.kafkaTracing.nextSpan((ConsumerRecord<?, ?>) rec).name("on-message").start();
 		try (Tracer.SpanInScope ws = this.tracer.withSpanInScope(span)) {
 			return invocation.proceed();
 		} catch (RuntimeException | Error e) {
@@ -66,7 +65,7 @@ public class MessageListenerMethodInterceptor<T extends MessageListener> impleme
 		}
 	}
 
-	private Object record(final Object[] arguments) {
+	private Object rec(final Object[] arguments) {
 		for (final Object object : arguments) {
 			if (object instanceof ConsumerRecord) {
 				return object;

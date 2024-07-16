@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 class ActionMessageTest {
 
 	@Test
-	void testCtor001() throws Exception {
+	void testCtor001() {
 		final ActionMessage message = new ActionMessage();
 		message.setActionType(ActionType.GRANT_REQUEST);
 		message.setObjectId(UUID.randomUUID());
@@ -39,7 +39,7 @@ class ActionMessageTest {
 	}
 
 	@Test
-	void testCtor002() throws Exception {
+	void testCtor002() {
 		final UUID uuid = UUID.randomUUID();
 		final ActionMessage message = new ActionMessage(ActionType.GRANT_REQUEST, uuid, "tenant", Map.of());
 		assertEquals(ActionType.GRANT_REQUEST, message.getActionType());

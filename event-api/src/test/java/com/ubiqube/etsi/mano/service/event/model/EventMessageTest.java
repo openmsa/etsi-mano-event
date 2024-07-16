@@ -24,6 +24,7 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("static-method")
 class EventMessageTest {
 
 	@Test
@@ -42,7 +43,9 @@ class EventMessageTest {
 	@Test
 	void testFilterAttributes() {
 		FilterAttributes fa = new FilterAttributes("", "");
+		assertNotNull(fa);
 		fa = new FilterAttributes();
+		assertNotNull(fa);
 		fa = FilterAttributes.of("a", "b");
 		assertNull(fa.getId());
 		fa.setAttribute("");

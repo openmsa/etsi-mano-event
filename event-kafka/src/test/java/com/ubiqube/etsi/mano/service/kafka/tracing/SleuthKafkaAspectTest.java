@@ -86,7 +86,6 @@ class SleuthKafkaAspectTest {
 		when(pjp.proceed()).thenReturn(amlc);
 		final ContainerProperties cp = Mockito.mock(ContainerProperties.class);
 		when(amlc.getContainerProperties()).thenReturn(cp);
-		final ConvertingMessageListener cml = Mockito.mock(ConvertingMessageListener.class);
 		when(cp.getMessageListener()).thenReturn("");
 		srv.wrapListenerContainerCreation(pjp);
 		assertTrue(true);

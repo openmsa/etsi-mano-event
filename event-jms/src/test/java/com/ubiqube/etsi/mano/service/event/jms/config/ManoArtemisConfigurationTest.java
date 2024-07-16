@@ -45,14 +45,14 @@ class ManoArtemisConfigurationTest {
 	private ObservationRegistry registry;
 
 	@Test
-	void tesMessageConverter() throws Exception {
+	void tesMessageConverter() {
 		final ManoArtemisConfiguration mac = new ManoArtemisConfiguration();
 		final MessageConverter res = mac.jacksonJmsMessageConverter(new ObjectMapper());
 		assertNotNull(res);
 	}
 
 	@Test
-	void testName() throws Exception {
+	void testName() {
 		final ManoArtemisConfiguration mac = new ManoArtemisConfiguration();
 		final JmsListenerContainerFactory<DefaultMessageListenerContainer> res = mac.jmsListenerContainerFactory(conn, messageConv, Optional.of(registry));
 		assertNotNull(res);

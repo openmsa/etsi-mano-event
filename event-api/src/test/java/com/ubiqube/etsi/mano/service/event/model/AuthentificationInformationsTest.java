@@ -31,7 +31,7 @@ import com.ubiqube.etsi.mano.service.auth.model.AuthentificationInformations;
 class AuthentificationInformationsTest {
 
 	@Test
-	void testBuilder() throws Exception {
+	void testBuilder() {
 		final AuthentificationInformations res = AuthentificationInformations.builder()
 				.authParamBasic(null)
 				.authTlsCert(null)
@@ -41,7 +41,7 @@ class AuthentificationInformationsTest {
 	}
 
 	@Test
-	void testBuilderToString() throws Exception {
+	void testBuilderToString() {
 		final String res = AuthentificationInformations.builder()
 				.authParamBasic(null)
 				.authTlsCert(null)

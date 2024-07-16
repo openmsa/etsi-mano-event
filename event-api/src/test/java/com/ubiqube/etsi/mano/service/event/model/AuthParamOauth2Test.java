@@ -29,7 +29,7 @@ import com.ubiqube.etsi.mano.service.auth.model.OAuth2GrantType;
 class AuthParamOauth2Test {
 
 	@Test
-	void testBuilder() throws Exception {
+	void testBuilder() {
 		final AuthParamOauth2 res = AuthParamOauth2.builder()
 				.clientId("")
 				.clientSecret("")
@@ -45,7 +45,7 @@ class AuthParamOauth2Test {
 	}
 
 	@Test
-	void testbuilderToString() throws Exception {
+	void testbuilderToString() {
 		final String res = AuthParamOauth2.builder()
 				.clientId("")
 				.clientSecret("")
@@ -60,7 +60,7 @@ class AuthParamOauth2Test {
 	}
 
 	@Test
-	void testCtor() throws Exception {
+	void testCtor() {
 		final AuthParamOauth2 apo = new AuthParamOauth2();
 		apo.setClientId("");
 		apo.setClientSecret("");

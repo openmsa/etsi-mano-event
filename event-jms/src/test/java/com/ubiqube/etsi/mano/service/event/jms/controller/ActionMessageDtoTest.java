@@ -26,11 +26,13 @@ import org.junit.jupiter.api.Test;
 
 import com.ubiqube.etsi.mano.service.event.ActionType;
 
+@SuppressWarnings("static-method")
 class ActionMessageDtoTest {
 
 	@Test
 	void test() {
 		ActionMessageDto srv = new ActionMessageDto();
+		assertNotNull(srv);
 		srv = new ActionMessageDto(ActionType.GRANT_REQUEST, UUID.randomUUID(), Map.of(), "tenant");
 		assertEquals(ActionType.GRANT_REQUEST, srv.getActionType());
 		assertNotNull(srv.getObjectId());

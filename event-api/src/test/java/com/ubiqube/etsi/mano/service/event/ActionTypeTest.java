@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 class ActionTypeTest {
 
 	@Test
-	void testfromValue() throws Exception {
+	void testfromValue() {
 		assertEquals(ActionType.REGISTER_SERVER, ActionType.fromValue("REGISTER_SERVER"));
 		final ActionType at = ActionType.fromValue("REGISTER_SERVER");
 		assertNotNull(at);
@@ -33,7 +33,7 @@ class ActionTypeTest {
 	}
 
 	@Test
-	void testfromValueNull() throws Exception {
+	void testfromValueNull() {
 		assertEquals(null, ActionType.fromValue(null));
 	}
 }

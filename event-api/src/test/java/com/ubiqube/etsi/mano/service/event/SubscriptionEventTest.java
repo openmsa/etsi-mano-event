@@ -28,7 +28,7 @@ import com.ubiqube.etsi.mano.service.event.model.Subscription;
 class SubscriptionEventTest {
 
 	@Test
-	void testBuilder() throws Exception {
+	void testBuilder() {
 		final Subscription subscr = new Subscription();
 		final SubscriptionEvent ev = SubscriptionEvent.builder()
 				.event(new EventMessage())
@@ -40,7 +40,7 @@ class SubscriptionEventTest {
 	}
 
 	@Test
-	void testBuilderToString() throws Exception {
+	void testBuilderToString() {
 		final Subscription subscr = new Subscription();
 		final String str = SubscriptionEvent.builder()
 				.event(new EventMessage())

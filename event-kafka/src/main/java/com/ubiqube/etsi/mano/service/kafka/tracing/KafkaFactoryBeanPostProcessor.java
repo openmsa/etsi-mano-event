@@ -33,14 +33,12 @@ public class KafkaFactoryBeanPostProcessor implements BeanPostProcessor {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Object postProcessAfterInitialization(final Object bean, final String beanName) throws BeansException {
-		if (bean instanceof final ConsumerFactory factory) {
-			if (factory.getPostProcessors().stream().noneMatch(o -> o instanceof TraceConsumerPostProcessor)) {
-				factory.addPostProcessor(new TraceConsumerPostProcessor(this.beanFactory));
+		if (bean instanceof final ConsumerFactory<?, ?> factory) {
+			if (factory.getPostProcessors().stream().noneMatch(TraceConsumerPostProcessor.class::isInstance)) {
+				factory.addPostProcessor(new TraceConsumerPostProcessor<>(this.beanFactory));
 			}
-		} else if (bean instanceof final ProducerFactory factory) {
-			if (factory.getPostProcessors().stream().noneMatch(o -> o instanceof TraceProducerPostProcessor)) {
-				factory.addPostProcessor(new TraceProducerPostProcessor(this.beanFactory));
-			}
+		} else if ((bean instanceof final ProducerFactory<?, ?> factory) && factory.getPostProcessors().stream().noneMatch(TraceProducerPostProcessor.class::isInstance)) {
+			factory.addPostProcessor(new TraceProducerPostProcessor<>(this.beanFactory));
 		}
 		return bean;
 	}

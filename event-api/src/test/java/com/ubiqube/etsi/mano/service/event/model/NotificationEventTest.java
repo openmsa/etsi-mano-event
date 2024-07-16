@@ -25,13 +25,13 @@ import org.junit.jupiter.api.Test;
 class NotificationEventTest {
 
 	@Test
-	void testName() throws Exception {
+	void testName() {
 		assertEquals(NotificationEvent.APP_TERMINATE_SUCCESS, NotificationEvent.fromValue("APP_TERMINATE_SUCCESS"));
 		assertEquals("APP_TERMINATE_SUCCESS", NotificationEvent.fromValue("APP_TERMINATE_SUCCESS").value());
 	}
 
 	@Test
-	void testFromValueNull() throws Exception {
+	void testFromValueNull() {
 		assertEquals(null, NotificationEvent.fromValue(null));
 	}
 

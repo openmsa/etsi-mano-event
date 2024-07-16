@@ -30,8 +30,7 @@ public class TraceProducerPostProcessor<K, V> implements ProducerPostProcessor<K
 	private KafkaTracing kafkaTracing;
 
 	// Because it's not public in Brave
-	private static final Class tracingProducer = ClassUtils.resolveClassName("brave.kafka.clients.TracingProducer",
-			null);
+	private static final Class<?> tracingProducer = ClassUtils.resolveClassName("brave.kafka.clients.TracingProducer", null);
 
 	public TraceProducerPostProcessor(final BeanFactory beanFactory) {
 		this.beanFactory = beanFactory;

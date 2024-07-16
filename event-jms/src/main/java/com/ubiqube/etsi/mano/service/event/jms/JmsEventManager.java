@@ -18,6 +18,7 @@ package com.ubiqube.etsi.mano.service.event.jms;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -62,18 +63,19 @@ public class JmsEventManager implements EventManager {
 
 	@Override
 	public void sendActionVnfm(final @Nullable ActionType actionType, final @Nullable UUID objectId, final @Nullable Map<String, Object> parameters) {
-		sendAction(Constants.QUEUE_VNFM_ACTIONS, actionType, objectId, parameters);
+		sendAction(Constants.QUEUE_VNFM_ACTIONS, actionType, objectId, Optional.ofNullable(parameters).orElseGet(Map::of));
 	}
 
 	@Override
 	public void sendActionNfvo(final @Nullable ActionType actionType, final @Nullable UUID objectId, final @Nullable Map<String, Object> parameters) {
-		sendAction(Constants.QUEUE_NFVO_ACTIONS, actionType, objectId, parameters);
+		sendAction(Constants.QUEUE_NFVO_ACTIONS, actionType, objectId, Optional.ofNullable(parameters).orElseGet(Map::of));
 	}
 
 	@Override
 	public void sendGrant(final @Nullable UUID objectId, final @Nullable Map<String, Object> parameters) {
 		final String tenant = Objects.requireNonNull(TenantHolder.getTenantId());
-		final GrantMessage msg = new GrantMessage(objectId, tenant, parameters);
+		Objects.requireNonNull(objectId);
+		final GrantMessage msg = new GrantMessage(objectId, tenant, Optional.ofNullable(parameters).orElseGet(Map::of));
 		jmsTemplate.convertAndSend(resolvQueueName(Constants.QUEUE_GRANT), msg);
 	}
 
@@ -84,12 +86,15 @@ public class JmsEventManager implements EventManager {
 
 	private void sendAction(final String queueName, @Nullable final ActionType actionType, @Nullable final UUID objectId, final Map<String, Object> parameters) {
 		final String tenant = Objects.requireNonNull(TenantHolder.getTenantId());
+		Objects.requireNonNull(objectId);
+		Objects.requireNonNull(actionType);
 		final ActionMessage msg = new ActionMessage(actionType, objectId, tenant, parameters);
 		jmsTemplate.convertAndSend(resolvQueueName(queueName), msg);
 	}
 
 	@Override
 	public void notificationSender(final @Nullable SubscriptionEvent se) {
+		Objects.requireNonNull(se);
 		jmsTemplate.convertAndSend(resolvQueueName(Constants.QUEUE_NOTIFICATION_SENDER), se);
 	}
 

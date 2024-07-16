@@ -26,7 +26,7 @@ import brave.kafka.clients.KafkaTracing;
 public class TraceConsumerPostProcessor<K, V> implements ConsumerPostProcessor<K, V> {
 	private KafkaTracing kafkaTracing;
 	private final BeanFactory beanFactory;
-	private static final Class tracingConsumer = ClassUtils.resolveClassName("brave.kafka.clients.TracingConsumer", null);
+	private static final Class<?> tracingConsumer = ClassUtils.resolveClassName("brave.kafka.clients.TracingConsumer", null);
 
 	public TraceConsumerPostProcessor(final BeanFactory beanFactory) {
 		this.beanFactory = beanFactory;
