@@ -88,6 +88,7 @@ public class Subscription implements Auditable {
 	private LcmOpOccNotificationVerbosityTypeEnum verbosity;
 
 	private String version;
+	private String headerVersion;
 
 	@Column(length = 5000)
 	private String nodeFilter;
