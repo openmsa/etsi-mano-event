@@ -9,6 +9,7 @@
 	</parent>
 	<groupId>com.ubiqube.mano.event</groupId>
 	<artifactId>mano-event-aggregator</artifactId>
+  <version>4.0.0</version>
 	<packaging>pom</packaging>
 	<description>Build document for ETSI-MANO event</description>
 	<modules>
@@ -20,6 +21,6 @@
 	</modules>
 	<scm>
 		<developerConnection>scm:git:https://github.com/openmsa/etsi-mano-event.git</developerConnection>
-		<tag>mano-event-aggregator-3.2.0</tag>
+		<tag>mano-event-aggregator-4.0.0</tag>
 	</scm>
 </project>
