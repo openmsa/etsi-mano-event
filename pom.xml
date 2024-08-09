@@ -20,7 +20,7 @@
 		<module>event-kafka</module>
 	</modules>
 	<scm>
-		<developerConnection>scm:git:https://github.com/openmsa/etsi-mano-event.git</developerConnection>
+		<developerConnection>scm:git:ssh://git@github.com/openmsa/etsi-mano-event.git</developerConnection>
 		<tag>mano-event-aggregator-3.2.0</tag>
 	</scm>
 </project>
