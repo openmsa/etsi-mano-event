@@ -54,10 +54,13 @@ public enum ActionType {
 	REGISTER_SERVER("REGISTER_SERVER"),
 	NS_SCALE("NS_SCALE"),
 	NS_HEAL("NS_HEAL"),
+	REGISTER_VIM("REGISTER_VIM"),
+	REGISTER_CIR("REGISTER_CIR"),
+	REGISTER_CAPI("REGISTER_CAPI"),
 	;
 
 	@Nonnull
-	private String value;
+	private final String value;
 
 	ActionType(final String v) {
 		value = v;
