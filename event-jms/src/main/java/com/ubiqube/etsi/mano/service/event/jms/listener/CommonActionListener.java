@@ -51,7 +51,7 @@ public class CommonActionListener {
 	@org.springframework.transaction.annotation.Transactional(propagation = Propagation.NEVER)
 	public void onEvent(final ActionMessage ev) {
 		LOG.info("JMS Common ActionController Receiving Action: {}", ev);
-		actionController.dispatch(ev.getActionType(), ev.getObjectId(), ev.getParameters());
+		actionController.dispatch(ev.getActionType(), ev.getObjectId(), ev.getTenantId(), ev.getParameters());
 		LOG.info("JMS Common ActionController Done for event: {}", ev);
 	}
 
