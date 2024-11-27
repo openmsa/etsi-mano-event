@@ -28,5 +28,5 @@ import jakarta.annotation.Nonnull;
  */
 public interface CommonActionDispatcher {
 
-	void dispatch(@Nonnull final ActionType actionType, @Nonnull final UUID objectId, @Nonnull final Map<String, Object> parameters);
+	void dispatch(@Nonnull final ActionType actionType, @Nonnull final UUID objectId, @Nonnull final String tenantId, @Nonnull final Map<String, Object> parameters);
 }
