@@ -10,7 +10,6 @@
 		<dependency>
 			<groupId>com.ubiqube.mano.event</groupId>
 			<artifactId>event-api</artifactId>
-			<version>${version.event-api}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ubiqube.mano.event</groupId>
@@ -40,7 +39,6 @@
 		<dependency>
 			<groupId>com.ubiqube.mano.auth</groupId>
 			<artifactId>auth-api</artifactId>
-			<version>${version.auth-api}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
