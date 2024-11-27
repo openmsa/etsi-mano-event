@@ -77,7 +77,7 @@ public class ActionMessage {
 
 	@Override
 	public String toString() {
-		return "ActionMessage [actionType=" + actionType + ", objectId=" + objectId + ", parameters=" + parameters + "]";
+		return "ActionMessage [actionType=" + actionType + ", objectId=" + objectId + ", parameters=" + parameters + ", tenantId=" + tenantId + "]";
 	}
 
 }
