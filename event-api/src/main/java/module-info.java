@@ -25,5 +25,6 @@ module com.ubiqube.etsi.mano.service.event {
 	requires jakarta.persistence;
 	requires jakarta.validation;
 	requires jakarta.servlet;
+	requires org.jspecify;
 	requires spring.core;
 }

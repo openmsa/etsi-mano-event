@@ -19,7 +19,7 @@ package com.ubiqube.etsi.mano.service.event;
 import java.util.Map;
 import java.util.UUID;
 
-import jakarta.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 /**
  *
@@ -28,5 +28,5 @@ import jakarta.annotation.Nonnull;
  */
 public interface CommonActionDispatcher {
 
-	void dispatch(@Nonnull final ActionType actionType, @Nonnull final UUID objectId, @Nonnull final String tenantId, @Nonnull final Map<String, Object> parameters);
+	void dispatch(@NonNull final ActionType actionType, @NonNull final UUID objectId, @NonNull final String tenantId, @NonNull final Map<String, Object> parameters);
 }

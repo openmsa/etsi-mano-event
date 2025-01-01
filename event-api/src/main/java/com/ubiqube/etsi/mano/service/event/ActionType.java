@@ -18,8 +18,8 @@ package com.ubiqube.etsi.mano.service.event;
 
 import java.util.stream.Stream;
 
-import jakarta.annotation.Nonnull;
-import jakarta.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Enum for all asynchronous event.
@@ -59,7 +59,7 @@ public enum ActionType {
 	REGISTER_CAPI("REGISTER_CAPI"),
 	;
 
-	@Nonnull
+	@NonNull
 	private final String value;
 
 	ActionType(final String v) {

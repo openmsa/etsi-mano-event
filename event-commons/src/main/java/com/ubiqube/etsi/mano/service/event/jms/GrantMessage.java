@@ -20,14 +20,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import jakarta.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 public class GrantMessage {
-	@Nonnull
+	@NonNull
 	private UUID objectId;
-	@Nonnull
+	@NonNull
 	private String tenantId;
-	@Nonnull
+	@NonNull
 	private Map<String, Object> parameters = new HashMap<>();
 
 	public GrantMessage() {

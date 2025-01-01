@@ -20,16 +20,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import jakarta.annotation.Nonnull;
+import org.jspecify.annotations.NonNull;
 
 public class ActionMessage {
-	@Nonnull
+	@NonNull
 	private ActionType actionType = ActionType.UNKNOW;
-	@Nonnull
+	@NonNull
 	private UUID objectId;
-	@Nonnull
+	@NonNull
 	private Map<String, Object> parameters = new HashMap<>();
-	@Nonnull
+	@NonNull
 	private String tenantId;
 
 	public ActionMessage() {
