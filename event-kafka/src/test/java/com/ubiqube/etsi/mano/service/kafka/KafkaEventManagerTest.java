@@ -17,6 +17,7 @@
 package com.ubiqube.etsi.mano.service.kafka;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
@@ -90,7 +91,16 @@ class KafkaEventManagerTest {
 		assertTrue(true);
 	}
 
-	void configureCac() {
+	@Test
+	void testSendNotification() {
+		configureCac();
+		final KafkaEventManager srv = new KafkaEventManager(kt, cac, eventMessageJpa);
+		when(eventMessageJpa.save(any())).thenReturn(new EventMessage());
+		srv.sendNotification(null, null, null);
+		assertTrue(true);
+	}
+
+	private void configureCac() {
 		when(cac.getBeanFactory()).thenReturn(clbf);
 		when(clbf.resolveEmbeddedValue(anyString())).thenReturn("test-queue");
 	}
