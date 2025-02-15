@@ -14,7 +14,6 @@
 	<description>Build document for ETSI-MANO event</description>
 	<modules>
 		<module>event-api</module>
-		<module>event-quartz</module>
 		<module>event-commons</module>
 		<module>event-jms</module>
 		<module>event-kafka</module>
