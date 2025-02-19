@@ -16,6 +16,7 @@
  */
 package com.ubiqube.etsi.mano.service.event.jms.controller;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -42,12 +43,12 @@ class EventControllerTest {
 	}
 
 	@Test
-	public void testNotification() {
+	void testNotification() {
 		EventMessageDto eventMessageDto = new EventMessageDto();
 		// ...set properties on eventMessageDto...
 
 		ResponseEntity<Void> response = eventController.notification(eventMessageDto);
-
+		assertNotNull(response);
 		verify(eventManager, times(1)).sendNotification(
 				eventMessageDto.getNotificationEvent(),
 				eventMessageDto.getObjectId(),
@@ -55,12 +56,12 @@ class EventControllerTest {
 	}
 
 	@Test
-	public void testNfvoAction() {
+	void testNfvoAction() {
 		ActionMessageDto actionMessageDto = new ActionMessageDto();
 		// ...set properties on actionMessageDto...
 
 		ResponseEntity<Void> response = eventController.nfvoAction(actionMessageDto);
-
+		assertNotNull(response);
 		verify(eventManager, times(1)).sendActionNfvo(
 				actionMessageDto.getActionType(),
 				actionMessageDto.getObjectId(),
@@ -68,12 +69,12 @@ class EventControllerTest {
 	}
 
 	@Test
-	public void testVnfmAction() {
+	void testVnfmAction() {
 		ActionMessageDto actionMessageDto = new ActionMessageDto();
 		// ...set properties on actionMessageDto...
 
 		ResponseEntity<Void> response = eventController.vnfmAction(actionMessageDto);
-
+		assertNotNull(response);
 		verify(eventManager, times(1)).sendActionVnfm(
 				actionMessageDto.getActionType(),
 				actionMessageDto.getObjectId(),
