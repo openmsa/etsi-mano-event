@@ -38,7 +38,7 @@ class EventControllerTest {
 	private EventController eventController;
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		MockitoAnnotations.openMocks(this);
 	}
 

@@ -37,7 +37,7 @@ class EventMessageDtoTest {
 	private Map<String, String> additionalParameters;
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		id = UUID.randomUUID();
 		notificationEvent = NotificationEvent.APP_INSTANCE_CREATE;
 		objectId = UUID.randomUUID();
